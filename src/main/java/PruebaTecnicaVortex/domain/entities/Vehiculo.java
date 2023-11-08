@@ -5,6 +5,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -12,27 +13,23 @@ import lombok.NoArgsConstructor;
 
 @Data
 @Entity
-@Table(name = "conductores")
+@Table(name = "vehiculos")
 @NoArgsConstructor
-//@Builder
 @AllArgsConstructor
-public class Conductor {
+public class Vehiculo {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer id;
 
-	@Column(nullable = false, length = 11)
-	private String identificacion;
-
-	@Column(length = 20)
-	private String apellido;
+	@Column(nullable = false, length = 20)
+	private String modelo;
 
 	@Column(nullable = false, length = 20)
-	private String nombre;
+	private String placa;
 
 	@Column(nullable = false, length = 20)
-	private String telefono;
+	private String capacidad;
 
-	@Column(length = 50)
-	private String direccion;
+	@JoinColumn(name = "conductor_id", nullable = false)
+	private Conductor conductor;
 }
